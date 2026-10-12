@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>Pin Soccer</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="app">
+<section id="menuScreen" class="screen active">
+  <div class="hero card">
+    <div class="ball-logo">⚽</div>
+    <h1>Pin Soccer</h1>
+    <p>Fast arcade soccer with proper pinhead players.</p>
+    <div class="menu-actions">
+      <button id="playBtn" class="primary">Play</button>
+      <button id="settingsBtn">Match Settings</button>
+      <button id="controlsBtn">Controls</button>
+    </div>
+  </div>
+</section>
+<section id="settingsScreen" class="screen">
+  <div class="panel card">
+    <div class="topbar"><button class="backBtn">← Back</button><h2>Match Settings</h2></div>
+    <div class="setting-row"><label>Opponent</label><select id="modeSelect"><option value="ai">Vs AI</option><option value="local">2 Players</option></select></div>
+    <div class="setting-row"><label>Goals to win</label><select id="lengthSelect"><option>3</option><option selected>5</option><option>7</option><option>10</option></select></div>
+    <div class="setting-row"><label>AI difficulty</label><select id="difficultySelect"><option>easy</option><option selected>normal</option><option>hard</option></select></div>
+    <div class="setting-row"><label>Game speed</label><select id="speedSelect"><option value=".85">Chill</option><option value="1" selected>Normal</option><option value="1.18">Fast</option></select></div>
+  </div>
+</section>
+<section id="controlsScreen" class="screen">
+  <div class="panel card">
+    <div class="topbar"><button class="backBtn">← Back</button><h2>Controls</h2></div>
+    <div class="setting-row"><label>Control style</label><select id="controlSelect"><option value="touch" selected>On-screen buttons</option><option value="keyboard">Keyboard</option></select></div>
+    <div class="control-help">
+      <div><h3>Player 1</h3><p>A / D = move<br>W = jump<br>S = kick / charge shot</p></div>
+      <div><h3>Player 2</h3><p>← / → = move<br>↑ = jump<br>↓ = kick / charge shot</p></div>
+    </div>
+    <p class="tip">Hold kick to charge the power bar. Release to shoot. The ball's height relative to your pin changes the shot angle: low contact gives a flatter shot; higher contact creates more of a chip.</p>
+  </div>
+</section>
+<section id="gameScreen" class="screen">
+  <div class="game-shell">
+    <div class="hud card">
+      <button id="menuBtn">Menu</button>
+      <div class="score"><span id="p1Score">0</span><span>–</span><span id="p2Score">0</span></div>
+      <button id="pauseBtn">Pause</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0">
+      <canvas id="gameCanvas" width="960" height="560"></canvas>
+      <div id="countdown" class="countdown"></div>
+      <div id="message" class="message"></div>
+    </div>
+    <div id="touchControls" class="touch-controls">
+      <div class="pad"><div class="pad-title">PLAYER 1</div><div class="pad-grid">
+        <button data-input="p1l">◀</button><button data-input="p1j">▲</button><button data-input="p1r">▶</button><button data-input="p1k" class="kick">HOLD KICK</button>
+      </div><div class="power-wrap"><div class="power-label">POWER <span id="p1PowerText">0%</span></div><div class="power-track"><div id="p1Power" class="power-fill"></div></div></div></div>
+      <div class="pad" id="p2Pad"><div class="pad-title">PLAYER 2</div><div class="pad-grid">
+        <button data-input="p2l">◀</button><button data-input="p2j">▲</button><button data-input="p2r">▶</button><button data-input="p2k" class="kick">HOLD KICK</button>
+      </div><div class="power-wrap"><div class="power-label">POWER <span id="p2PowerText">0%</span></div><div class="power-track"><div id="p2Power" class="power-fill"></div></div></div></div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="game.js"></script>
+</body>
+</html>
